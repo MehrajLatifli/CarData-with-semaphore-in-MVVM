@@ -1,0 +1,136 @@
+﻿<Window x:Class="CarData__with_semaphore_.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CarData__with_semaphore_" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        mc:Ignorable="d"
+        Title="Data of cars" MinHeight="450" MinWidth="1200" MaxHeight="450" MaxWidth="1200" Background="Salmon" Icon="Icon of CarData.png">
+    
+    <DockPanel>
+
+        <Grid>
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+
+                <Grid>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <TextBox x:Name="CarmodelTbox" Grid.Row="0" Padding="5" Margin="5" FontSize="40" FontWeight="Black" Foreground="Purple">
+                        <TextBox.ToolTip>
+                            <Label Background="Purple" Foreground="Salmon" Width="150" Height="25" FontWeight="Black" Content="Model of car"></Label>
+                        </TextBox.ToolTip>
+                    </TextBox>
+                    
+                    <TextBox x:Name="CarVendorTbox" Grid.Row="1" Padding="5" Margin="5" FontSize="40" FontWeight="Black" Foreground="Purple">
+                        <TextBox.ToolTip>
+                            <Label Background="Purple" Foreground="Salmon" Width="150" Height="25" FontWeight="Black" Content="Vendor of car"></Label>
+                        </TextBox.ToolTip>
+                    </TextBox>
+                    
+                    <TextBox x:Name="CarYearTbox" Grid.Row="2" Padding="5" Margin="5" FontSize="40" FontWeight="Black" Foreground="Purple" MaxLength="4" MaxLines="4" MinLines="4" >
+                        
+                        <TextBox.ToolTip>
+                            <Label Background="Purple" Foreground="Salmon" Width="150" Height="25" FontWeight="Black" Content="Year of car"></Label>
+                        </TextBox.ToolTip>
+
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="TextChanged">
+                                <i:InvokeCommandAction Command="{Binding OnlyNumberCommand}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                        
+                    </TextBox>
+
+                    <Grid Grid.Row="3">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <!--<ColumnDefinition></ColumnDefinition>-->
+                        </Grid.ColumnDefinitions>
+
+                        <RadioButton x:Name="CatalogARadioButton" Grid.Column="0" GroupName="A" Content="Catalog A" Margin="5" Padding="10" Foreground="Purple"  FontSize="15" FontWeight="Black" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"></RadioButton>
+                        <!--<RadioButton x:Name="CatalogBRadioButton" Grid.Column="1" GroupName="A" Content="Catalog B" Margin="5" Padding="10" Foreground="Purple"  FontSize="15" FontWeight="Black" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"></RadioButton>-->
+                        <RadioButton x:Name="CatalogCRadioButton" Grid.Column="1" GroupName="A" Content="Catalog C" Margin="5" Padding="10" Foreground="Purple"  FontSize="15" FontWeight="Black" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"></RadioButton>
+                        <RadioButton x:Name="CatalogDRadioButton" Grid.Column="2" GroupName="A" Content="Catalog D" Margin="5" Padding="10" Foreground="Purple"  FontSize="15" FontWeight="Black" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"></RadioButton>
+                        <RadioButton x:Name="CatalogERadioButton" Grid.Column="3" GroupName="A" Content="Catalog E" Margin="5" Padding="10" Foreground="Purple"  FontSize="15" FontWeight="Black" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"></RadioButton>
+
+                    </Grid>
+
+                    <Button x:Name="WriteFileButton" Grid.Row="4" Padding="5" Margin="5" Content="Write file" FontSize="40" FontWeight="Black" Foreground="Salmon" Background="Purple" Command="{Binding WriteFileCommand}"></Button>
+
+                </Grid>
+                
+            </Grid>
+
+            <Grid Grid.Column="1">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="4*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <ListBox Grid.Row="0" x:Name="listbox1" Margin="5" Background="Purple" Foreground="Salmon" FontSize="25" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto"> </ListBox>
+
+                <Grid Grid.Row="1">
+                    
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Column="0">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <RadioButton x:Name="SingleRadioButton" Grid.Column="0" GroupName="B" Content="Single" Margin="5" Padding="10" Foreground="Purple"  FontSize="15" FontWeight="Black" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"></RadioButton>
+                        <RadioButton x:Name="MultiRadioButton" Grid.Column="1" GroupName="B" Content="Multi" Margin="5" Padding="10" Foreground="Purple"  FontSize="15" FontWeight="Black" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"></RadioButton>
+
+                    
+                    </Grid>
+
+                    <TextBlock x:Name="TimerTextblock" Grid.Column="1" Margin="5" Padding="15,26,15,15" Text="Time" FontSize="15" FontWeight="Black" Foreground="Purple"></TextBlock>
+
+
+                    <Grid Grid.Column="2">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Button x:Name="StartButton" Grid.Column="0" Padding="5" Margin="5" Content="Start" FontSize="20" FontWeight="Black" Foreground="Salmon" Background="Purple" Command="{Binding StartCommand}"></Button>
+
+                        <Button x:Name="CancelButton" Grid.Column="1" Padding="5" Margin="5" Content="Cancel" FontSize="20" FontWeight="Black" Foreground="Salmon" Background="Purple" Command="{Binding CancelCommand}"></Button>
+
+                    </Grid>
+
+
+                </Grid>
+                
+            </Grid>
+            
+        </Grid>
+        
+    </DockPanel>
+    
+</Window>
